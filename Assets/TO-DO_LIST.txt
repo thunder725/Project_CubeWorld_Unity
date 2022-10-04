@@ -8,7 +8,11 @@
 
 	Grabbing coins
 	All coins spawns Star
+		Animate camera for this
+		
 	Grabbing Stars
+
+
 
 ============ VISUAL ============
 

@@ -10,6 +10,10 @@ public class BigCollectableRotation : MonoBehaviour
 
     Vector3[] randomRotations;
 
+    [SerializeField] float scaleModifiyerIntensity, scaleModifyerFrequency;
+
+    float defaultScale;
+
 
     private void Awake()
     {
@@ -20,6 +24,8 @@ public class BigCollectableRotation : MonoBehaviour
         child3 = transform.GetChild(2);
 
         GenerateQuaternions();
+
+        defaultScale = transform.localScale.x;
     }
 
     void GenerateQuaternions()
@@ -37,6 +43,8 @@ public class BigCollectableRotation : MonoBehaviour
     
     void Update()
     {
+        transform.localScale = Vector3.one * (defaultScale + (Mathf.Sin(Time.time * scaleModifyerFrequency) * scaleModifiyerIntensity));
+
         transform.Rotate(Time.deltaTime * randomRotations[0] * rotationSpeed / 100);
 
         child1.Rotate(Time.deltaTime * randomRotations[1] * rotationSpeed / 100);
