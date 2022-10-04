@@ -1,6 +1,5 @@
 ============ SCRIPTING ============
 
-	InputSystem
 	Action can Dash
 	Action can Jump
 
