@@ -18,7 +18,6 @@ public class CharacterAbilities : MonoBehaviour
 
     // ================ SCRIPT SPECIFIC METHODS ===================
 
-
     /// <summary>
     /// Get the color of the face on the ground.
     /// </summary>

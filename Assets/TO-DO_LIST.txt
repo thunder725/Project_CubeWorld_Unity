@@ -1,0 +1,35 @@
+============ SCRIPTING ============
+
+	InputSystem
+	Action can Dash
+	Action can Jump
+
+	Dash can destroy some items
+
+	Grabbing coins
+	All coins spawns Star
+	Grabbing Stars
+
+============ VISUAL ============
+
+	Tree destruction particles
+
+============ LD ============
+
+	Build Base Level
+
+	Build Mountain
+	
+	Build Starting Zone
+
+	Build Ruins
+
+============ AUDIO ============
+
+============ DEBUG ============
+
+============ MENUS ============
+
+============  ============
+
+============  ============
