@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 203876875447179016}
   - component: {fileID: 3853827173747857581}
   - component: {fileID: 1341927744798059623}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Child_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5559569636952513342}
   - component: {fileID: 5559569636952513340}
   - component: {fileID: 5559569636952513341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Child_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5559569637222571703}
   - component: {fileID: 5559569637222571701}
   - component: {fileID: 5559569637222571702}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Child_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,9 +261,10 @@ GameObject:
   - component: {fileID: 5383611968603124116}
   - component: {fileID: 7877527774967203166}
   - component: {fileID: 8525988877085582474}
-  m_Layer: 0
-  m_Name: Big_Collectible
-  m_TagString: Untagged
+  - component: {fileID: 7253250883243880331}
+  m_Layer: 6
+  m_Name: Big_Collectable
+  m_TagString: Big_Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,4 +350,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 80
-  randomRotations: []
+--- !u!135 &7253250883243880331
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525988877085582475}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.02
+  m_Center: {x: 0, y: 0, z: 0}
