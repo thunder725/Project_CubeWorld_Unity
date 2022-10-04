@@ -1,0 +1,13 @@
+{
+  "name": "com.personal.personal.mathplus",
+  "version": "0.1.0",
+  "displayName": "Math Plus",
+  "description": "Extended Library of the regular Mathf Library",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+  "keywords": [],
+  "author": {
+    "name": "Personal",
+    "email": "lloustalot@artfx.fr"
+  }
+}
