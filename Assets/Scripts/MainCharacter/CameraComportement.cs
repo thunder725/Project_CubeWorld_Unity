@@ -16,7 +16,7 @@ public class CameraComportement : MonoBehaviour
     {
         Direction = OwnCharacter.GetComponent<CharacterController>().ForwardVelocity.normalized;
         ;
-        print(Direction);
+        
 
         transform.parent.transform.forward  = Vector3.Lerp(transform.parent.transform.forward, Direction, _LagRotation * Time.deltaTime);
 

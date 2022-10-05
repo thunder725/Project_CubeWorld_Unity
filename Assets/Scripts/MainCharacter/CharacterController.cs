@@ -8,6 +8,7 @@ public class CharacterController : MonoBehaviour
 {
     Rigidbody rb;
     InputController MainController;
+    CharacterAbilities SCabilities;
     Vector2 MovementValue;
     public float Speed, _Mult, _DragMult;
     private float InitialSpeed;
@@ -17,16 +18,17 @@ public class CharacterController : MonoBehaviour
     //start =====================================
     private void Awake()
     {
-
+        SCabilities = GetComponent<CharacterAbilities>();
         rb = GetComponent<Rigidbody>();
         MainController = new InputController();
 
-
+        MainController.Gamepad.Abilities.performed += EventAbilities;
     }
 
     private void Start()
     {
         InitialSpeed = Speed;
+
     }
 
     private void OnEnable()
@@ -57,9 +59,10 @@ public class CharacterController : MonoBehaviour
 
             _Velocity.z = Speed * MovementValue.y;
             _Velocity.x = Speed * MovementValue.x;
+            _Velocity.y = rb.velocity.y;
 
             //rb.velocity = _Velocity;
-            Debug.Log(SupportCamera.transform.forward);
+            
             //rb.velocity = new Vector3(MovementValue.x * SupportCamera.transform.right.x,
             //    0,
             //    _Velocity.z * SupportCamera.transform.forward.z);
@@ -88,5 +91,12 @@ public class CharacterController : MonoBehaviour
         {
             _Mult =0;
         }
+    }
+
+    // Activation
+
+    public void EventAbilities(InputAction.CallbackContext press)
+    {
+        Debug.Log(SCabilities.GetDownFaceColor());
     }
 }
