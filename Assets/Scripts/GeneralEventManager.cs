@@ -5,8 +5,8 @@ using UnityEngine;
 public class GeneralEventManager : MonoBehaviour
 {
 
-    public static UnityEvent PauseGameplay;
-    public static UnityEvent ResumeGameplay;
+    public static UnityAction PauseGameplay;
+    public static UnityAction ResumeGameplay;
 
     
 }

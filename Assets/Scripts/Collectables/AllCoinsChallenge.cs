@@ -1,17 +1,15 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEditor;
 
 public class AllCoinsChallenge : MonoBehaviour
 {
-    public LayerMask collectableLayerMask;
-
-    public Transform bigStarSpawnPoint;
-    public GameObject bigStarPrefab;
-
     public TextMeshProUGUI coinCounter;
 
     [SerializeField] Animator animator;
+
+    public GameObject cameraObject, bigStarObject;
 
     int totalNumberOfCoins;
     int remainingNumberOfCoins;
@@ -21,6 +19,13 @@ public class AllCoinsChallenge : MonoBehaviour
         GetAllCoins();
 
         UpdateText();
+
+        animator = GetComponent<Animator>();
+
+        cameraObject.SetActive(false);
+        bigStarObject.SetActive(false);
+
+
     }
 
     void GetAllCoins()
@@ -42,11 +47,24 @@ public class AllCoinsChallenge : MonoBehaviour
         UpdateText();
     }
 
-    void SpawnBigStar()
+    public void SpawnBigStar()
     {
-        Instantiate(bigStarPrefab, bigStarSpawnPoint.position, Quaternion.identity);
-
         GeneralEventManager.PauseGameplay.Invoke();
+
+        cameraObject.SetActive(true);
+        bigStarObject.SetActive(true);
+
+        cameraObject.GetComponent<Camera>().targetDisplay = 0;
+
+        animator.Play("CoinChallenge_ShowStar");
+    }
+
+    public void BigStarWasSpawned()
+    {
+        GeneralEventManager.ResumeGameplay.Invoke();
+
+        cameraObject.SetActive(false);
+        animator.Play("New State");
     }
 
 
@@ -56,5 +74,40 @@ public class AllCoinsChallenge : MonoBehaviour
         coinCounter.text = remainingNumberOfCoins + "/" + totalNumberOfCoins;
     }
 
+    public void SubscribeToEvents()
+    {
+        GeneralEventManager.ResumeGameplay += Nothing;
+        GeneralEventManager.PauseGameplay += Nothing;
+    }
+
+    void Nothing()
+    {
+
+    }
+
 
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(AllCoinsChallenge))]
+public class AllCoinsChallengeEditor : Editor
+{
+    AllCoinsChallenge _instance;
+
+    private void Awake()
+    {
+        _instance = FindObjectOfType<AllCoinsChallenge>();
+        _instance.SubscribeToEvents();
+    }
+
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        if (GUILayout.Button("Spawn Big Star"))
+        {
+            _instance.SpawnBigStar();
+        }
+    }
+}
+#endif
