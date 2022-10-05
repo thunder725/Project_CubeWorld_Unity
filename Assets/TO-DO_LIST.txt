@@ -17,9 +17,20 @@
 
 	Option Menu ? 
 
+
+	Use the UnityEvent to pause gameplay when showing the 
+
 ============ VISUAL ============
 
 	Tree destruction particles
+
+	Pegu Billboard
+	Pegu Color
+
+	Birds?
+
+	Star particle System
+	Star Material
 
 ============ LD ============
 
@@ -45,6 +56,7 @@
 	Pegu squished
 	Menu Button mouseover (?)
 	Menu Button Click
+	Birds (?)
 
 ============ DEBUG ============
 
