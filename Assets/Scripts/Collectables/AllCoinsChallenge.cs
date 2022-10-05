@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class AllCoinsChallenge : MonoBehaviour
 {
@@ -10,10 +11,10 @@ public class AllCoinsChallenge : MonoBehaviour
 
     public TextMeshProUGUI coinCounter;
 
+    [SerializeField] Animator animator;
 
     int totalNumberOfCoins;
     int remainingNumberOfCoins;
-
 
     private void Awake()
     {
@@ -44,7 +45,11 @@ public class AllCoinsChallenge : MonoBehaviour
     void SpawnBigStar()
     {
         Instantiate(bigStarPrefab, bigStarSpawnPoint.position, Quaternion.identity);
+
+        GeneralEventManager.PauseGameplay.Invoke();
     }
+
+
 
     void UpdateText()
     {
