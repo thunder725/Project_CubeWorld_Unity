@@ -9,7 +9,7 @@ public class CharacterController : MonoBehaviour
     Rigidbody rb;
     InputController MainController;
     CharacterAbilities SCabilities;
-    Vector2 MovementValue, CameraValue;
+    public Vector2 MovementValue, CameraValue;
     float Timer;
     public float Speed, _Mult, _DragMult;
     private float InitialSpeed;
