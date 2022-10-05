@@ -33,6 +33,19 @@
 
 ============ AUDIO ============
 
+	Coin Pickup
+	Jump
+	Land
+	Star Pickup
+	Geyser
+	Dash
+	Dash-Collide into objects
+	Destroy Tree
+	Pegu flees
+	Pegu squished
+	Menu Button mouseover (?)
+	Menu Button Click
+
 ============ DEBUG ============
 
 ============ MENUS ============

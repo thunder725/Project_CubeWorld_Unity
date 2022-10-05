@@ -15,12 +15,17 @@ public class GeyserScript : MonoBehaviour
     Vector3 capsulePoint1, capsulePoint2;
     public float capsuleRadius;
 
+    GameObject ParticlesGameObject;
+
+    [SerializeField] float CullingDistance;
 
     private void Awake()
     {
         capsuleCollider = GetComponent<CapsuleCollider>();
 
         GetCapsuleValues();
+
+        ParticlesGameObject = transform.GetChild(0).gameObject;
     }
 
     void GetCapsuleValues()
@@ -46,6 +51,23 @@ public class GeyserScript : MonoBehaviour
             ResetTimer();
             CheckForPlayer();
         }
+
+        // If active, try to unload it
+        if (ParticlesGameObject.activeInHierarchy)
+        {
+            if ((Camera.main.transform.position - transform.position).sqrMagnitude > MathPlus.FastSquare(CullingDistance))
+            {
+                ParticlesGameObject.SetActive(false);
+            }
+
+        }
+        else
+        {
+            if ((Camera.main.transform.position - transform.position).sqrMagnitude < MathPlus.FastSquare(CullingDistance))
+            {
+                ParticlesGameObject.SetActive(true);
+            }
+        }
     }
 
 
@@ -66,7 +88,7 @@ public class GeyserScript : MonoBehaviour
 
         if (overlapResults.Length != 0)
         {
-            Debug.Log("Player Found");
+            // Debug.Log("Player Found");
             // reset Velocity & PUSH
             overlapResults[0].attachedRigidbody.velocity = (Vector3.up * pushStrength);
         }
