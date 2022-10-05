@@ -11,7 +11,9 @@
 		
 	Grabbing Stars
 
+	Return to menu (Scene Management)
 
+	Show pause menu (Start Input)
 
 ============ VISUAL ============
 
