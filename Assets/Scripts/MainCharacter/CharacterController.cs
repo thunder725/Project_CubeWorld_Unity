@@ -9,11 +9,14 @@ public class CharacterController : MonoBehaviour
     Rigidbody rb;
     InputController MainController;
     CharacterAbilities SCabilities;
-    Vector2 MovementValue;
+    Vector2 MovementValue, CameraValue;
+    float Timer;
     public float Speed, _Mult, _DragMult;
     private float InitialSpeed;
     public Vector3 ForwardVelocity;
     public GameObject SupportCamera;
+    public bool IsCamera;
+
 
     //start =====================================
     private void Awake()
@@ -50,6 +53,22 @@ public class CharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(MainController.Gamepad.CameraDirection.ReadValue<Vector2>() != new Vector2(0,0))
+        {
+            CameraValue = MainController.Gamepad.CameraDirection.ReadValue<Vector2>();
+            IsCamera = false;
+        }
+        else
+        {
+            Timer += Time.deltaTime;
+            if (Timer >= 1.5f)
+            {
+                IsCamera = true;
+            }
+        }
+
+
+
         if(MainController.Gamepad.Movement.ReadValue<Vector2>() != new Vector2(0,0))
         {
             MovementValue.x = MainController.Gamepad.Movement.ReadValue<Vector2>().x ;
@@ -61,14 +80,9 @@ public class CharacterController : MonoBehaviour
             _Velocity.x = Speed * MovementValue.x;
             _Velocity.y = rb.velocity.y;
 
-            //rb.velocity = _Velocity;
-            
-            //rb.velocity = new Vector3(MovementValue.x * SupportCamera.transform.right.x,
-            //    0,
-            //    _Velocity.z * SupportCamera.transform.forward.z);
             
             rb.velocity = _Velocity.x * SupportCamera.transform.right + _Velocity.z * SupportCamera.transform.forward;
-            //rb.AddForce(SupportCamera.transform.right.z*MovementValue.x, 0, SupportCamera.transform.forward.z*MovementValue.y, ForceMode.Impulse);
+
 
             if (_Mult <= 3)
             {

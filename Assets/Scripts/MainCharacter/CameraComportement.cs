@@ -15,10 +15,20 @@ public class CameraComportement : MonoBehaviour
     private void FixedUpdate()
     {
         Direction = OwnCharacter.GetComponent<CharacterController>().ForwardVelocity.normalized;
-        ;
-        
 
-        transform.parent.transform.forward  = Vector3.Lerp(transform.parent.transform.forward, Direction, _LagRotation * Time.deltaTime);
+        /*
+        if(!OwnCharacter.GetComponent<CharacterController>().IsCamera)
+        {
+            //OwnCharacter.GetComponent<CharacterController>().GetComponent<CharacterController>().value
+        }
+        else
+        {
+            transform.parent.transform.forward = Vector3.Lerp(transform.parent.transform.forward, Direction, _LagRotation * Time.deltaTime);
+        }
+        */
+
+        transform.parent.transform.forward = Vector3.Lerp(transform.parent.transform.forward, Direction, _LagRotation * Time.deltaTime);
+
 
         transform.parent.transform.position = Vector3.Lerp(transform.parent.transform.position, OwnCharacter.transform.position, Time.deltaTime * _Lag);
 
