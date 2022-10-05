@@ -11,9 +11,11 @@
 		
 	Grabbing Stars
 
-	Return to menu (Scene Management)
+	Start Game (Scene Management)
 
 	Show pause menu (Start Input)
+
+	Option Menu ? 
 
 ============ VISUAL ============
 

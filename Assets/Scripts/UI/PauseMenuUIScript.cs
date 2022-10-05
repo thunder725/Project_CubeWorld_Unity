@@ -14,6 +14,11 @@ public class PauseMenuUIScript : MonoBehaviour
 
     public void OnReturnToMenuClick()
     {
+        SceneManager.LoadScene(0);
+    }
+
+    public void OnClickOptionMenu()
+    {
 
     }
 
