@@ -138,4 +138,60 @@ using UnityEngine;
             result /= numbersList.Count;
             return result;
         }
+
+        /// <summary>
+        /// Returns either -1 or +1 as a float
+        /// </summary>
+        /// <returns>-1 or +1 as float. Equal chance of each</returns>
+        public static float MinusOrPlusOne()
+        {
+            float result = 0;
+            result = Random.Range(0, 2) == 0 ? -1f : 1f;
+            return result;
+        }
+
+        /// <summary>
+        /// Converts a Celcius temperature into a Fahrenheit temperature
+        /// </summary>
+        /// <param name="celciusValue">The Temperature (in Celcius) to be converted.</param>
+        /// <returns> The entered value, converted in Fahrenheit </returns>
+        public static float CelciusToFahrenheit(float celciusValue)
+        {
+            return ((celciusValue * 1.8f) + 32);
+        }
+
+        /// <summary>
+        /// Converts a Fahrenheit temperature into a Celcius temperature
+        /// </summary>
+        /// <param name="celciusValue">The Temperature (in Fahrenheit) to be converted.</param>
+        /// <returns> The entered value, converted in Celcius </returns>
+        public static float FahrenheitToCelcius(float fahrenheitValue)
+        {
+            return ((fahrenheitValue - 32) / 1.8f);
+        }
+
+        /// <summary>
+        /// Returns the Vector with every value being its absolute value.
+        /// </summary>
+        /// <param name="_vector">The Vector to return</param>
+        /// <returns>The given Vector with every parameter absolute.</returns>
+        public static Vector3 AbsVector(Vector3 _vector)
+        {
+            _vector[0] = Mathf.Abs(_vector.x);
+            _vector[1] = Mathf.Abs(_vector.y);
+            _vector[2] = Mathf.Abs(_vector.z);
+            return _vector;
+        }
+
+        /// <summary>
+        /// Returns the Vector with every value being its absolute value.
+        /// </summary>
+        /// <param name="_vector">The Vector to return</param>
+        /// <returns>The given Vector with every parameter absolute.</returns>
+        public static Vector2 AbsVector(Vector2 _vector)
+        {
+            _vector[0] = Mathf.Abs(_vector.x);
+            _vector[1] = Mathf.Abs(_vector.y);
+            return _vector;
+        }
     }

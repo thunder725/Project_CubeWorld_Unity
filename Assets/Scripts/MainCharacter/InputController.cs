@@ -81,7 +81,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""5cf3c345-7a90-48a2-86cb-a1640613d8ad"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -103,7 +103,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""3176ceea-59eb-42cd-abb9-00b6d88091d0"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -170,6 +170,17 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""c643acfb-72f5-4652-93de-4eaf71397084"",
                     ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Abilities"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07b49e34-bfad-4b12-a331-c03f57f774d7"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

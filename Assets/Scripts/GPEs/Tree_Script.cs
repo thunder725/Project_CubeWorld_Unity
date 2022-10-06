@@ -7,18 +7,22 @@ public class Tree_Script : MonoBehaviour
     [SerializeField] GameObject treeStumpPrefab;
     [SerializeField] Transform stumpSpawnPoint;
     [SerializeField] GameObject destructionParticles;
-    [SerializeField] LayerMask playerLayer;
+
+    public const float speedDestructionThreshold = 2.5f;
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == playerLayer)
+        // Debug.Log(collision.rigidbody.velocity.sqrMagnitude);
+
+
+        if (collision.gameObject.tag == "Player" && collision.rigidbody.velocity.sqrMagnitude > speedDestructionThreshold)
         {
             // get the direction of the movement of the Player colliding
             Vector3 impactInertia = collision.rigidbody.velocity;
 
             // make it vertical non-dependant
-            impactInertia[1] = 0;
+            // impactInertia[1] = 0;
             impactInertia = impactInertia.normalized;
 
             // Spawn particle

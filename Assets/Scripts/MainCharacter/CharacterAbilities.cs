@@ -6,14 +6,11 @@ using UnityEngine;
 public class CharacterAbilities : MonoBehaviour
 {
 
-
+    public bool ShouldDebugFaceColor;
 
     // ================ DEFAULT UNITY METHODS ===================
 
-    private void Start()
-    {
-        Debug.Log(GetDownFaceColor());
-    }
+
 
 
     // ================ SCRIPT SPECIFIC METHODS ===================
@@ -80,24 +77,31 @@ public class CharacterAbilities : MonoBehaviour
         if (checkingVector.y > 0)
         {
             // Face on the ground is Red
+
+            if (ShouldDebugFaceColor)
+            {
+                Debug.Log("The face on the ground is Red. Should Dash");
+            }
             return 1;
         }
         else
         {
             // Face on the ground is Blue
+
+            if (ShouldDebugFaceColor)
+            {
+                Debug.Log("The face on the ground is Blue. Should Jump");
+            }
             return 0;
         }
     }
 
     float GetDifferenceWithWorldUp(Vector3 _vector)
     {
-        return (AbsVector(_vector) - Vector3.up).sqrMagnitude;
+        return (MathPlus.AbsVector(_vector) - Vector3.up).sqrMagnitude;
     }
 
-    Vector3 AbsVector(Vector3 _vector)
-    {
-        return new Vector3(Mathf.Abs(_vector.x), Mathf.Abs(_vector.y), Mathf.Abs(_vector.z));
-    }
+    
 
 
 

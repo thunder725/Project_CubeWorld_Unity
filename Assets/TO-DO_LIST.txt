@@ -1,13 +1,8 @@
 ============ SCRIPTING ============
 
 	Action can Dash
-	Action can Jump
 
 	Dash can destroy some items
-
-	Grabbing coins
-	All coins spawns Star
-		Animate camera for this
 		
 	Grabbing Stars
 
@@ -18,7 +13,9 @@
 	Option Menu ? 
 
 
-	Use the UnityEvent to pause gameplay when showing the 
+	Use the UnityEvent to pause gameplay when showing the Animation
+
+	use the isDashing bool to remove speedcap for the Dash Duration
 
 ============ VISUAL ============
 

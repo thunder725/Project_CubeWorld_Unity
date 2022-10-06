@@ -150,9 +150,9 @@ GameObject:
   - component: {fileID: 973661025866044124}
   - component: {fileID: 6458395960775035873}
   - component: {fileID: 5213012791495831570}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainCharacterProto
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,11 +236,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a97626848db0c74db8f24a109e4fb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementValue: {x: 0, y: 0}
+  CameraValue: {x: 0, y: 0}
   Speed: 2
   _Mult: 0
   _DragMult: 1
   ForwardVelocity: {x: 0, y: 0, z: 0}
   SupportCamera: {fileID: 973661024738976932}
+  IsCamera: 0
 --- !u!54 &973661025866044127
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -380,7 +383,6 @@ GameObject:
   - component: {fileID: 973661025894459394}
   - component: {fileID: 973661025894459393}
   - component: {fileID: 973661025894459392}
-  - component: {fileID: 973661025894459395}
   m_Layer: 0
   m_Name: Forward
   m_TagString: Untagged
@@ -453,20 +455,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &973661025894459395
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 973661025894459405}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &973661026007592976
 GameObject:
   m_ObjectHideFlags: 0

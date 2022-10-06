@@ -49,22 +49,22 @@ public class AllCoinsChallenge : MonoBehaviour
 
     public void SpawnBigStar()
     {
-        GeneralEventManager.PauseGameplay.Invoke();
-
         cameraObject.SetActive(true);
         bigStarObject.SetActive(true);
 
         cameraObject.GetComponent<Camera>().targetDisplay = 0;
 
         animator.Play("CoinChallenge_ShowStar");
+
+        GeneralEventManager.PauseGameplay.Invoke();
     }
 
     public void BigStarWasSpawned()
     {
-        GeneralEventManager.ResumeGameplay.Invoke();
-
         cameraObject.SetActive(false);
         animator.Play("New State");
+
+        GeneralEventManager.ResumeGameplay.Invoke();
     }
 
 
