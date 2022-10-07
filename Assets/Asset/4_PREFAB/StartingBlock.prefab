@@ -244,6 +244,18 @@ MonoBehaviour:
   ForwardVelocity: {x: 0, y: 0, z: 0}
   SupportCamera: {fileID: 973661024738976932}
   IsCamera: 0
+  coinsChallenge: {fileID: 0}
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 119
+  groundDetectionStartingPoint: {x: 0, y: -0.65, z: 0}
+  groundDetectionSize: {x: 0.5, y: 0.15, z: 0.5}
+  isGrounded: 0
+  overlapResults: []
+  jumpImpulsionStrength: 30
+  DashImpulsionStrength: 120
+  DashDuration: 0
+  CoinPickupParticles: {fileID: 8128644973095988511, guid: e4b6b1b5b9e0a69409e4572324beb97d, type: 3}
 --- !u!54 &973661025866044127
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -372,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcc56f3229862344a735172529cc82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShouldDebugFaceColor: 0
 --- !u!1 &973661025894459405
 GameObject:
   m_ObjectHideFlags: 0
