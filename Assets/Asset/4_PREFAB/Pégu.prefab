@@ -143,6 +143,7 @@ MonoBehaviour:
   TimeBetweenCheckForPlayer: 0.5
   timeToRunFor: 3.5
   CullingDistance: 75
+  stickingTimer: 5
 --- !u!95 &307788230
 Animator:
   serializedVersion: 4
