@@ -32,6 +32,8 @@ public class PeguScript : MonoBehaviour
     [SerializeField] float CullingDistance;
     bool shouldBeActive;
 
+    [SerializeField] float stickingTimer;
+
 
     private void Start()
     {
@@ -52,7 +54,13 @@ public class PeguScript : MonoBehaviour
     {
         if (shouldBeActive) // Pégu should have AI
         {
-            transform.LookAt(Camera.main.transform.position, Vector3.up);
+
+            // Do a Billboard effect if not sticking to the cube
+            if (currentState != PéguIAState.Sticking)
+            {
+                transform.forward = Camera.main.transform.forward;
+            }
+            
 
             // Pégu is too far away
             if ((Camera.main.transform.position - transform.position).sqrMagnitude > MathPlus.FastSquare(CullingDistance))
@@ -85,6 +93,11 @@ public class PeguScript : MonoBehaviour
                         case PéguIAState.RunningAway:
                             MaybeStopRunning();
                             break;
+
+                        case PéguIAState.Sticking:
+                            Destroy(gameObject);
+                            break;
+
                     }
                 }
 
@@ -93,10 +106,17 @@ public class PeguScript : MonoBehaviour
                 if (currentState == PéguIAState.Moving)
                 {
                     transform.position += DirectionToMoveTowards * regularMovementSpeed * Time.deltaTime;
+
+
+                    FlipXOrNot();
+
                 }
                 else if (currentState == PéguIAState.RunningAway)
                 {
                     transform.position += DirectionToMoveTowards * runningMovementSpeed * Time.deltaTime;
+
+                    FlipXOrNot();
+
                 }
 
             }
@@ -114,6 +134,30 @@ public class PeguScript : MonoBehaviour
             }
         }
         
+    }
+
+
+    void FlipXOrNot()
+    {
+        // Calculate the Quaternion to rotate a vector by the difference between transform.forward & World.forward
+        var rotationToWorld = Quaternion.FromToRotation(transform.forward, Vector3.forward);
+
+        // Rotate the direction with the Quaternion to "transfer" it into the coordinate system of the Transform
+        var rotatedDirection = rotationToWorld * DirectionToMoveTowards;
+
+        // Just analyse the x component: > 0 => moves to the Pégu's Right, and the other way around
+
+        if (rotatedDirection.x >= 0)
+        {
+            // Unflip when going to the right
+
+            sr.flipX = false;
+        }
+        else
+        {
+            // Flip when going to the left
+            sr.flipX = true;
+        }
     }
 
 
@@ -244,11 +288,25 @@ public class PeguScript : MonoBehaviour
         // Align to rotation
         transform.rotation = _player.transform.rotation;
 
-        // 
+        // Change State to "dead"
         currentState = PéguIAState.Sticking;
+
+        // Remove Animation
+        animator.Play("New_State");
+        animator.enabled = false;
 
         // Disable the Collider
         GetComponent<SphereCollider>().enabled = false;
+
+        transform.SetParent(_player.transform);
+
+
+        // get closer to the cube
+        transform.localPosition /= 2.5f;
+
+
+
+        currentStateTimer = stickingTimer;
     }
 
 }
