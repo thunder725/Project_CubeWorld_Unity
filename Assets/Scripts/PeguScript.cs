@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PeguScript : MonoBehaviour
 {
@@ -34,9 +35,12 @@ public class PeguScript : MonoBehaviour
 
     [SerializeField] float stickingTimer;
 
+    Rigidbody rb;
+
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 
         RandomlyChangeColor();
@@ -105,7 +109,9 @@ public class PeguScript : MonoBehaviour
 
                 if (currentState == PéguIAState.Moving)
                 {
-                    transform.position += DirectionToMoveTowards * regularMovementSpeed * Time.deltaTime;
+                    rb.velocity = DirectionToMoveTowards * regularMovementSpeed;
+                    
+                    // transform.position += DirectionToMoveTowards * regularMovementSpeed * Time.deltaTime;
 
 
                     FlipXOrNot();
@@ -113,7 +119,9 @@ public class PeguScript : MonoBehaviour
                 }
                 else if (currentState == PéguIAState.RunningAway)
                 {
-                    transform.position += DirectionToMoveTowards * runningMovementSpeed * Time.deltaTime;
+                    // transform.position += DirectionToMoveTowards * runningMovementSpeed * Time.deltaTime;
+
+                    rb.velocity = DirectionToMoveTowards * runningMovementSpeed;
 
                     FlipXOrNot();
 
@@ -179,6 +187,8 @@ public class PeguScript : MonoBehaviour
 
         // Start Timer
         currentStateTimer = Random.Range(idleTimerTimes.x, idleTimerTimes.y);
+
+        rb.velocity = Vector3.zero;
     }
 
     void StartMoving()
@@ -274,19 +284,23 @@ public class PeguScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, distanceToDetectPlayer);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             // Stick to player
-            StickToPlayer(other.gameObject);
+            StickToPlayer(collision.gameObject);
         }
     }
+
+
 
     void StickToPlayer(GameObject _player)
     {
         // Align to rotation
-        transform.rotation = _player.transform.rotation;
+        // transform.rotation = _player.transform.rotation;
+
+        rb.velocity = Vector3.zero;
 
         // Change State to "dead"
         currentState = PéguIAState.Sticking;
@@ -302,7 +316,7 @@ public class PeguScript : MonoBehaviour
 
 
         // get closer to the cube
-        transform.localPosition /= 2.5f;
+        transform.localPosition /= 1.7f;
 
 
 
