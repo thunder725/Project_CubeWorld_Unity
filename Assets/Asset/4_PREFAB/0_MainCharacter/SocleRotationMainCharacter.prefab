@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2057727097251846060}
   - component: {fileID: 2057727097251846099}
   m_Layer: 0
-  m_Name: SocleRotationMainCamera (X)
+  m_Name: SocleRotationMainCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 2057727097417886134}
   - component: {fileID: 2057727097417886133}
   m_Layer: 0
-  m_Name: SocleRotationMainCharacter (Y)
+  m_Name: SocleRotationMainCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
