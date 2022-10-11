@@ -19,12 +19,12 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
     private void Awake()
     {
-        
+        SCabilities = GetComponent<CharacterAbilities>();
         _Controller = new InputController();
         rb = GetComponent<Rigidbody>();
 
         
-                 overlapResults = new Collider[32];
+        overlapResults = new Collider[32];
         
 
     }
@@ -93,7 +93,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
 
             rb.velocity = _Velocity.x * SocleCameraRotationX.transform.right + _Velocity.z * SocleCameraRotationX.transform.forward + _Velocity.y * Vector3.up;
-            print(rb.velocity);
+            // print(rb.velocity);
 
             if (_Mult <= 3)
             {
@@ -113,6 +113,42 @@ public class SC_ControllerMainCharacter : MonoBehaviour
         {
             _Mult = Mathf.Lerp(_Mult, 0, Time.deltaTime * _DragMult);
         }          
+
+        #region isGrounded
+
+        // IMPORTANT
+        /*
+            The "overlapResults" doesn't empty itself if the OverlapBox doesn't hit anything
+            BUT, the method will return 0 
+            So I need to check for the returned value instead of the length of the array
+        */
+        if (Physics.OverlapBoxNonAlloc(transform.position + groundDetectionStartingPoint, groundDetectionSize / 2, overlapResults, Quaternion.identity, groundLayers, QueryTriggerInteraction.Ignore) > 0)
+        {
+            // Touching ground
+            if (!isGrounded)
+            {
+                LandingOnGround();
+            }
+        }
+        else
+        {
+            // Not touching ground
+            if (isGrounded)
+            {
+                LeavingGround();
+            }
+        }
+
+        
+
+        #endregion
+
+
+        if (isFrozen)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
     }
 
 

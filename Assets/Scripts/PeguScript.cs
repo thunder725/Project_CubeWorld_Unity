@@ -3,12 +3,13 @@ using UnityEngine.Rendering;
 
 public class PeguScript : MonoBehaviour
 {
-    public enum PéguIAState { Idle, Moving, RunningAway, Sticking};
+    public enum PeguIAState { Idle, Moving, RunningAway, Sticking};
 
-    PéguIAState currentState;
+    PeguIAState currentState;
 
 
     [SerializeField] float distanceToDetectPlayer;
+    [SerializeField] float gravityValue;
 
 
     [SerializeField] SpriteRenderer sr;
@@ -20,7 +21,7 @@ public class PeguScript : MonoBehaviour
     float currentStateTimer;
 
     [SerializeField] Vector2 idleTimerTimes, movementTimerTimes;
-    Vector3 DirectionToMoveTowards;
+    public Vector3 DirectionToMoveTowards;
 
     [SerializeField] float TimeBetweenCheckForPlayer, timeToRunFor;
 
@@ -47,8 +48,8 @@ public class PeguScript : MonoBehaviour
         StartIdling();
 
         // Do the first check in a random time between 0 & 2 Timer
-        // So that every Pégu has a random check time
-        // And not do the calls of the 80000 Pégu at the same frame
+        // So that every Pï¿½gu has a random check time
+        // And not do the calls of the 80000 Pï¿½gu at the same frame
         Invoke("CheckForPlayer", Random.Range(0, 2*TimeBetweenCheckForPlayer));
 
         overlapResults = new Collider[3];
@@ -56,17 +57,17 @@ public class PeguScript : MonoBehaviour
 
     private void Update()
     {
-        if (shouldBeActive) // Pégu should have AI
+        if (shouldBeActive) // Pï¿½gu should have AI
         {
 
             // Do a Billboard effect if not sticking to the cube
-            if (currentState != PéguIAState.Sticking)
+            if (currentState != PeguIAState.Sticking)
             {
                 transform.forward = Camera.main.transform.forward;
             }
             
 
-            // Pégu is too far away
+            // Pï¿½gu is too far away
             if ((Camera.main.transform.position - transform.position).sqrMagnitude > MathPlus.FastSquare(CullingDistance))
             {
                 // Disable AI
@@ -86,19 +87,19 @@ public class PeguScript : MonoBehaviour
                 {
                     switch (currentState)
                     {
-                        case PéguIAState.Idle:
+                        case PeguIAState.Idle:
                             StartMoving();
                             break;
 
-                        case PéguIAState.Moving:
+                        case PeguIAState.Moving:
                             StartIdling();
                             break;
 
-                        case PéguIAState.RunningAway:
+                        case PeguIAState.RunningAway:
                             MaybeStopRunning();
                             break;
 
-                        case PéguIAState.Sticking:
+                        case PeguIAState.Sticking:
                             Destroy(gameObject);
                             break;
 
@@ -107,21 +108,26 @@ public class PeguScript : MonoBehaviour
 
                 // Walk or Run away
 
-                if (currentState == PéguIAState.Moving)
+                if (currentState == PeguIAState.Moving)
                 {
                     rb.velocity = DirectionToMoveTowards * regularMovementSpeed;
-                    
-                    // transform.position += DirectionToMoveTowards * regularMovementSpeed * Time.deltaTime;
+                    // rb.velocity += Vector3.down * gravityValue;
+
+                    // rb.velocity = Vector3.zero;
+
 
 
                     FlipXOrNot();
 
                 }
-                else if (currentState == PéguIAState.RunningAway)
+                else if (currentState == PeguIAState.RunningAway)
                 {
-                    // transform.position += DirectionToMoveTowards * runningMovementSpeed * Time.deltaTime;
 
                     rb.velocity = DirectionToMoveTowards * runningMovementSpeed;
+                    // rb.velocity += Vector3.down * gravityValue;
+
+                    // rb.velocity = Vector3.zero;
+                    
 
                     FlipXOrNot();
 
@@ -129,9 +135,9 @@ public class PeguScript : MonoBehaviour
 
             }
         }
-        else // Pégu shouldn't have AI
+        else // Pï¿½gu shouldn't have AI
         {
-            // Pégu is close enough
+            // Pï¿½gu is close enough
             if ((Camera.main.transform.position - transform.position).sqrMagnitude < MathPlus.FastSquare(CullingDistance))
             {
                 // Enable AI
@@ -153,7 +159,7 @@ public class PeguScript : MonoBehaviour
         // Rotate the direction with the Quaternion to "transfer" it into the coordinate system of the Transform
         var rotatedDirection = rotationToWorld * DirectionToMoveTowards;
 
-        // Just analyse the x component: > 0 => moves to the Pégu's Right, and the other way around
+        // Just analyse the x component: > 0 => moves to the Pï¿½gu's Right, and the other way around
 
         if (rotatedDirection.x >= 0)
         {
@@ -170,7 +176,7 @@ public class PeguScript : MonoBehaviour
 
 
     /*
-         IA of the Pégu:
+         IA of the Pï¿½gu:
             
             Roll a timer for a time before moving (medium-long)
             When it's done, they roll a random direction to move to and a time to move for
@@ -179,11 +185,12 @@ public class PeguScript : MonoBehaviour
 
     void StartIdling()
     {
+        if (currentState == PeguIAState.Sticking) { return; }
         animator.Play("Pegu_IdleAnim");
         animator.speed = 1;
 
         // Change state to idle
-        currentState = PéguIAState.Idle;
+        currentState = PeguIAState.Idle;
 
         // Start Timer
         currentStateTimer = Random.Range(idleTimerTimes.x, idleTimerTimes.y);
@@ -193,11 +200,12 @@ public class PeguScript : MonoBehaviour
 
     void StartMoving()
     {
+        if (currentState == PeguIAState.Sticking) { return; }
         animator.Play("Pegu_MovementAnim");
         animator.speed = 1;
 
         // Change state to idle
-        currentState = PéguIAState.Moving ;
+        currentState = PeguIAState.Moving ;
 
 
         // Create a random 2d vector with only X and Z in parameters
@@ -215,6 +223,7 @@ public class PeguScript : MonoBehaviour
 
     void CheckForPlayer()
     {
+        if (currentState == PeguIAState.Sticking) { return; }
         if (Physics.OverlapSphereNonAlloc(transform.position, distanceToDetectPlayer, overlapResults, playerLayer, QueryTriggerInteraction.Ignore) != 0)
         {
             // Detected Player!
@@ -235,7 +244,7 @@ public class PeguScript : MonoBehaviour
         animator.speed = 2f;
         detectedPlayer = playerTransform;
 
-        currentState = PéguIAState.RunningAway;
+        currentState = PeguIAState.RunningAway;
 
         // Move straight away;
         DirectionToMoveTowards = transform.position - detectedPlayer.position;
@@ -297,28 +306,35 @@ public class PeguScript : MonoBehaviour
 
     void StickToPlayer(GameObject _player)
     {
+        Debug.Log("Sticky Time");
+
         // Align to rotation
         // transform.rotation = _player.transform.rotation;
 
         rb.velocity = Vector3.zero;
 
         // Change State to "dead"
-        currentState = PéguIAState.Sticking;
+        currentState = PeguIAState.Sticking;
 
         // Remove Animation
-        animator.Play("New_State");
-        animator.enabled = false;
+        animator.Play("Pegu_NoAnimation");
+        
 
         // Disable the Collider
-        GetComponent<SphereCollider>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+
+
+        // Remove the RigidBody of the PÃ©gu
+        Destroy(rb);
 
         transform.SetParent(_player.transform);
 
 
         // get closer to the cube
-        transform.localPosition /= 1.7f;
+        transform.localPosition /= 1.4f;
 
-
+        // Disable Animator a bit later
+        animator.enabled = false;
 
         currentStateTimer = stickingTimer;
     }

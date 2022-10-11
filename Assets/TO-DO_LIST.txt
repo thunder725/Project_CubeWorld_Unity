@@ -19,11 +19,6 @@
 
 ============ VISUAL ============
 
-	Tree destruction particles
-
-	Pegu Billboard
-	Pegu Color
-
 	Birds?
 
 	Star particle System

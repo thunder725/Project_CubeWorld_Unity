@@ -8,7 +8,7 @@ public class Tree_Script : MonoBehaviour
     [SerializeField] Transform stumpSpawnPoint;
     [SerializeField] GameObject destructionParticles;
 
-    public const float speedDestructionThreshold = 2.5f;
+    public const float speedDestructionThreshold = 2f;
 
 
     private void OnCollisionEnter(Collision collision)

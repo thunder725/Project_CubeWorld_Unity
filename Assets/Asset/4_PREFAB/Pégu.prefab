@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8534438924069315763}
   - component: {fileID: 3378706328685985878}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SP_PeguTheDancer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 307788230}
   - component: {fileID: 538987077521743095}
   - component: {fileID: 330523441422670332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: "P\xE9gu"
   m_TagString: "P\xE9gu"
   m_Icon: {fileID: 0}
@@ -133,14 +133,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToDetectPlayer: 5
+  gravityValue: 0.6
   sr: {fileID: 3378706328685985878}
-  regularMovementSpeed: 3.5
-  runningMovementSpeed: 6
+  regularMovementSpeed: 2.5
+  runningMovementSpeed: 4
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
   idleTimerTimes: {x: 2, y: 4}
   movementTimerTimes: {x: 2.5, y: 4.5}
+  DirectionToMoveTowards: {x: 0, y: 0, z: 0}
   TimeBetweenCheckForPlayer: 0.5
   timeToRunFor: 3.5
   CullingDistance: 75
@@ -192,5 +194,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
