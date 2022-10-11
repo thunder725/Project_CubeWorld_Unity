@@ -8,9 +8,12 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
     InputController _Controller;
     Rigidbody rb;
-    float _SpeedMovement;
-    public float _RotationLag;
+    
+    public float _RotationLag, _CameraSpeedY, _CameraSpeedX, _SpeedMovement, _Mult, _DragMult;
+    float InitialSpeed;
     CharacterAbilities SCabilities;
+    public GameObject SocleCameraRotationX, SocleCameraRotationY;
+    Vector2 MovementValue;
 
     //===========================================================
 
@@ -20,79 +23,102 @@ public class SC_ControllerMainCharacter : MonoBehaviour
         _Controller = new InputController();
         rb = GetComponent<Rigidbody>();
 
-        /*
+        
                  overlapResults = new Collider[32];
-        */
+        
 
+    }
+
+    private void Start()
+    {
+        InitialSpeed = _SpeedMovement;
     }
 
     private void OnEnable()
     {
         _Controller.Enable();
 
-        /*
+        
         GeneralEventManager.PauseGameplay += FreezeInPlace;
         GeneralEventManager.ResumeGameplay += Unfreeze;
         _Controller.Gamepad.Abilities.performed += EventAbilities;
-        */
+        
     }
 
     private void OnDisable()
     {
         _Controller.Disable();
 
-        /*
+        
         GeneralEventManager.PauseGameplay -= FreezeInPlace;
         GeneralEventManager.ResumeGameplay -= Unfreeze;
 
-        MainController.Gamepad.Abilities.performed -= EventAbilities;
-        */
+        _Controller.Gamepad.Abilities.performed -= EventAbilities;
+        
     }
+
 
 
     private void FixedUpdate()
     {
 
-        Vector2 MovementValueStick = _Controller.Gamepad.Movement.ReadValue<Vector2>();
+        Vector2 MovementValueStickCamera = _Controller.Gamepad.CameraDirection.ReadValue<Vector2>();
 
-        if (MovementValueStick != Vector2.zero)
+        if (MovementValueStickCamera != Vector2.zero)
         {
 
-            Quaternion StickDirection = Quaternion.LookRotation(new Vector3(MovementValueStick.x, 0, MovementValueStick.y));  // * transform.rotation
-            transform.rotation = Quaternion.Lerp(transform.rotation, StickDirection, Time.deltaTime * _RotationLag);
+            Vector3 RotationActualX = SocleCameraRotationX.transform.rotation.eulerAngles;
+            Quaternion _RotationCameraControllerResult = Quaternion.Euler(new Vector3(0, RotationActualX.y + MovementValueStickCamera.x * _CameraSpeedX, 0));
+            SocleCameraRotationX.transform.rotation = Quaternion.Lerp(SocleCameraRotationX.transform.rotation, _RotationCameraControllerResult, Time.deltaTime * _RotationLag);
 
-            //rb.velocity = _Velocity.x * SocleCharacterController.transform.right + _Velocity.z * SocleCharacterController.transform.forward + _Velocity.y * Vector3.up;
+            Vector3 RotationActualY = SocleCameraRotationY.transform.rotation.eulerAngles;
+            Quaternion _RotationCameraControllerResultY = Quaternion.Euler(new Vector3(RotationActualY.x + -MovementValueStickCamera.y * _CameraSpeedY, RotationActualY.y, 0));
+            SocleCameraRotationY.transform.rotation = Quaternion.Lerp(SocleCameraRotationY.transform.rotation, _RotationCameraControllerResultY, Time.deltaTime * _RotationLag);
 
-            /*
+
+        }
+
+        MovementValue = _Controller.Gamepad.Movement.ReadValue<Vector2>();
+
+        SocleCameraRotationX.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        if (MovementValue != Vector2.zero)
+        {
+            Vector3 _Velocity = rb.velocity;
+
+
+            _Velocity.z = _SpeedMovement * MovementValue.y;
+            _Velocity.x = _SpeedMovement * MovementValue.x;
+            _Velocity.y = rb.velocity.y;
+
+
+            rb.velocity = _Velocity.x * SocleCameraRotationX.transform.right + _Velocity.z * SocleCameraRotationX.transform.forward + _Velocity.y * Vector3.up;
+            print(rb.velocity);
 
             if (_Mult <= 3)
             {
                 _Mult += Time.deltaTime * _DragMult;
             }
 
-            if (InitialSpeed * 3 <= Speed)
+            if (InitialSpeed * 3 <= _SpeedMovement)
             {
-                Speed = InitialSpeed * 2;
+                _SpeedMovement = InitialSpeed * 2;
             }
             else
             {
-                Speed = InitialSpeed * _Mult;
+                _SpeedMovement = InitialSpeed * _Mult;
             }
-
-            ForwardVelocity = rb.velocity;
-            */
-        }
+        }         
         else
         {
-           // _Mult = 0;
-        }
-            
+            _Mult = Mathf.Lerp(_Mult, 0, Time.deltaTime * _DragMult);
+        }          
     }
 
 
     #region LeonardCode
 
-    /*
+
 
     bool isFrozen;
     Vector3 savedVelocity, savedAngularVelocity;
@@ -165,7 +191,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
         if (_directionToDash == Vector3.zero)
         {
-            _directionToDash = SupportCamera.transform.forward;
+            _directionToDash = SocleCameraRotationX.transform.forward;
         }
 
         rb.AddForce(_directionToDash * DashImpulsionStrength * 1000f);
@@ -244,7 +270,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + groundDetectionStartingPoint, groundDetectionSize);
     }
 
-    */
+    
 
     #endregion
 
