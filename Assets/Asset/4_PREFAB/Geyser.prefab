@@ -115,7 +115,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  pushStrength: 5
+  pushStrength: 12
   OverlapFrequencies: 7
   capsuleRadius: 0
   CullingDistance: 50
