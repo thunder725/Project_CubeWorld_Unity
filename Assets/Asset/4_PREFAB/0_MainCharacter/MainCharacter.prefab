@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 3107754747586273709}
   - component: {fileID: 3107754747586273708}
   - component: {fileID: 3107754747586273714}
-  m_Layer: 0
+  - component: {fileID: 8616891576621763380}
+  - component: {fileID: 3524052902269205629}
+  m_Layer: 7
   m_Name: MainCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,3 +151,29 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3758573805739257388, guid: d53a28ce5fd43ea4492a021205ac075d, type: 3}
+--- !u!114 &8616891576621763380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107754747586273707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dcc56f3229862344a735172529cc82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShouldDebugFaceColor: 0
+--- !u!114 &3524052902269205629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107754747586273707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dcc56f3229862344a735172529cc82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShouldDebugFaceColor: 1
