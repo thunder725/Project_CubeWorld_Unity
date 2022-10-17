@@ -147,7 +147,6 @@ MonoBehaviour:
   treeStumpPrefab: {fileID: 7165614901665176920, guid: fa8a582c56a06414080aee7080af035a, type: 3}
   stumpSpawnPoint: {fileID: 1406554133}
   destructionParticles: {fileID: 7184626830938730579, guid: 5c8836e06317c0545a4585376c8412a7, type: 3}
-  speedDestructionThreshold: 3.5
 --- !u!1 &7593652059954747207
 GameObject:
   m_ObjectHideFlags: 0
