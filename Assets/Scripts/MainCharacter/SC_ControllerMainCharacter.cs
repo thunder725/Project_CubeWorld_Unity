@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,11 +10,12 @@ public class SC_ControllerMainCharacter : MonoBehaviour
     InputController _Controller;
     Rigidbody rb;
     
-    public float _RotationLag, _CameraSpeedY, _CameraSpeedX, _SpeedMovement, _Mult, _DragMult, LagSpeedVelocity;
+    public float _RotationLag, _CameraSpeedY, _CameraSpeedX, _SpeedMovement, _Mult, _DragMult, LagSpeedVelocity, _LagMultCalcule, _MultCamera, _DragMultCamera, _LagMovementCamera, LagRotationOutRange90D;
     float InitialSpeed;
     CharacterAbilities SCabilities;
     public GameObject SocleCameraRotationX, SocleCameraRotationY;
     Vector2 MovementValue;
+    Quaternion _RotationCameraControllerResult, _RotationCameraControllerResultY;
 
     //===========================================================
 
@@ -62,57 +64,140 @@ public class SC_ControllerMainCharacter : MonoBehaviour
     private void FixedUpdate()
     {
 
-        Vector2 MovementValueStickCamera = _Controller.Gamepad.CameraDirection.ReadValue<Vector2>();
+        Vector3 SocleRotation = new Vector3(SocleCameraRotationY.transform.rotation.eulerAngles.x, SocleCameraRotationX.transform.rotation.eulerAngles.y, SocleCameraRotationY.transform.rotation.eulerAngles.z) ;
+        SocleCameraRotationY.transform.rotation = Quaternion.Euler(SocleRotation);
+
+        print(isGrounded);
+
+        if (_MultCamera <= 3)
+        {
+            _MultCamera += Time.deltaTime * _DragMultCamera;
+        }
+
+        Vector2 MovementValueStickCamera = _Controller.Gamepad.CameraDirection.ReadValue<Vector2>() * _MultCamera;
 
         if (MovementValueStickCamera != Vector2.zero)
         {
+            if (_MultCamera <= 3)
+            {
+                _MultCamera += Time.deltaTime * _DragMult;
+            }
 
             Vector3 RotationActualX = SocleCameraRotationX.transform.rotation.eulerAngles;
-            Quaternion _RotationCameraControllerResult = Quaternion.Euler(new Vector3(0, RotationActualX.y + MovementValueStickCamera.x * _CameraSpeedX, 0));
-            SocleCameraRotationX.transform.rotation = Quaternion.Lerp(SocleCameraRotationX.transform.rotation, _RotationCameraControllerResult, Time.deltaTime * _RotationLag);
+            _RotationCameraControllerResult = Quaternion.Euler(new Vector3(0, RotationActualX.y + MovementValueStickCamera.x * _CameraSpeedX, 0));
+
 
             Vector3 RotationActualY = SocleCameraRotationY.transform.rotation.eulerAngles;
-            Quaternion _RotationCameraControllerResultY = Quaternion.Euler(new Vector3(RotationActualY.x + -MovementValueStickCamera.y * _CameraSpeedY, RotationActualY.y, 0));
-            SocleCameraRotationY.transform.rotation = Quaternion.Lerp(SocleCameraRotationY.transform.rotation, _RotationCameraControllerResultY, Time.deltaTime * _RotationLag);
+            _RotationCameraControllerResultY = Quaternion.Euler(new Vector3(RotationActualY.x + -MovementValueStickCamera.y * _CameraSpeedY, RotationActualY.y, 0));
 
 
+            
+      
+ 
+            if(SocleCameraRotationY.transform.rotation.eulerAngles.x >= 275f || SocleCameraRotationY.transform.rotation.eulerAngles.x <= 85)
+            {
+                SocleCameraRotationY.transform.rotation = Quaternion.Lerp(SocleCameraRotationY.transform.rotation, _RotationCameraControllerResultY, Time.deltaTime * _RotationLag);
+            }
+            else
+            {
+                if(SocleCameraRotationY.transform.rotation.eulerAngles.x <= 90)
+                {
+                    Vector3 CameraInf = new Vector3(80, SocleCameraRotationY.transform.rotation.eulerAngles.y, SocleCameraRotationY.transform.rotation.eulerAngles.z);
+                    SocleCameraRotationY.transform.rotation = Quaternion.Lerp(SocleCameraRotationY.transform.rotation, Quaternion.Euler(CameraInf), Time.deltaTime * LagRotationOutRange90D);
+                    print("oui");
+                }
+                else
+                {
+                    Vector3 CameraInf = new Vector3(276, SocleCameraRotationY.transform.rotation.eulerAngles.y, SocleCameraRotationY.transform.rotation.eulerAngles.z);
+                    SocleCameraRotationY.transform.rotation = Quaternion.Lerp(SocleCameraRotationY.transform.rotation, Quaternion.Euler(CameraInf), Time.deltaTime * LagRotationOutRange90D);
+                }
+            }
+
+
+            SocleCameraRotationX.transform.rotation = Quaternion.Lerp(SocleCameraRotationX.transform.rotation, _RotationCameraControllerResult, Time.deltaTime * _RotationLag);
+
+        }
+        else
+        {
+            _MultCamera = 0;
         }
 
         MovementValue = _Controller.Gamepad.Movement.ReadValue<Vector2>();
 
-        SocleCameraRotationX.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-
-        if (MovementValue != Vector2.zero)
+        SocleCameraRotationX.transform.position = Vector3.Lerp(SocleCameraRotationX.transform.position, transform.position, Time.deltaTime * _LagMovementCamera);
+        if(isGrounded)
         {
-            Vector3 _Velocity = rb.velocity;
-
-
-            _Velocity.z = _SpeedMovement * MovementValue.y;
-            _Velocity.x = _SpeedMovement * MovementValue.x;
-            _Velocity.y = rb.velocity.y;
-
-            Vector3 _VelocityTarget = _Velocity.x * SocleCameraRotationX.transform.right + _Velocity.z * SocleCameraRotationX.transform.forward + _Velocity.y * Vector3.up;
-            rb.velocity = Vector3.Lerp(rb.velocity, _VelocityTarget, Time.deltaTime * LagSpeedVelocity);
-            // print(rb.velocity);
-
-            if (_Mult <= 3)
+            if (MovementValue != Vector2.zero)
             {
-                _Mult += Time.deltaTime * _DragMult;
-            }
+                Vector3 _Velocity = rb.velocity;
 
-            if (InitialSpeed * 3 <= _SpeedMovement)
-            {
-                _SpeedMovement = InitialSpeed * 3;
+
+                _Velocity.z = _SpeedMovement * MovementValue.y;
+                _Velocity.x = _SpeedMovement * MovementValue.x;
+                _Velocity.y = rb.velocity.y;
+
+                Vector3 _VelocityTarget = _Velocity.x * SocleCameraRotationX.transform.right + _Velocity.z * SocleCameraRotationX.transform.forward + _Velocity.y * Vector3.up;
+                rb.velocity = Vector3.Lerp(rb.velocity, _VelocityTarget, Time.deltaTime * LagSpeedVelocity);
+                // print(rb.velocity);
+
+
+                if (_Mult <= 3)
+                {
+                    _Mult += Time.deltaTime * _DragMult;
+                }
+
+                if (InitialSpeed * 3 <= _SpeedMovement)
+                {
+                    _SpeedMovement = Mathf.Lerp(_SpeedMovement, InitialSpeed * 3, Time.deltaTime * _LagMultCalcule);
+                }
+                else
+                {
+                    _SpeedMovement = Mathf.Lerp(_SpeedMovement, InitialSpeed * _Mult, Time.deltaTime * _LagMultCalcule);
+                }
             }
             else
             {
-                _SpeedMovement = InitialSpeed * _Mult;
+                _Mult = Mathf.Lerp(_Mult, 0, Time.deltaTime * _DragMult);
+                _SpeedMovement = Mathf.Lerp(_SpeedMovement, 0, Time.deltaTime * 1);
             }
-        }         
+        }
         else
         {
-            _Mult = Mathf.Lerp(_Mult, 0, Time.deltaTime * _DragMult);
-        }          
+            if (MovementValue != Vector2.zero)
+            {
+                Vector3 _Velocity = rb.velocity;
+
+
+                _Velocity.z = _SpeedMovement  * MovementValue.y;
+                _Velocity.x = _SpeedMovement  * MovementValue.x;
+                _Velocity.y = rb.velocity.y;
+
+                Vector3 _VelocityTarget = _Velocity.x * SocleCameraRotationX.transform.right + _Velocity.z * SocleCameraRotationX.transform.forward + _Velocity.y * Vector3.up;
+                rb.velocity = Vector3.Lerp(rb.velocity, _VelocityTarget, Time.deltaTime * LagSpeedVelocity / 5);
+                // print(rb.velocity);
+
+
+                if (_Mult <= 3)
+                {
+                    _Mult += Time.deltaTime * _DragMult;
+                }
+
+                if (InitialSpeed * 3 <= _SpeedMovement)
+                {
+                    _SpeedMovement = Mathf.Lerp(_SpeedMovement, InitialSpeed * 3, Time.deltaTime * _LagMultCalcule / 5);
+                }
+                else
+                {
+                    _SpeedMovement = Mathf.Lerp(_SpeedMovement, InitialSpeed * _Mult, Time.deltaTime * _LagMultCalcule / 5);
+                }
+            }
+            else
+            {
+                _Mult = Mathf.Lerp(_Mult, 0, Time.deltaTime * _DragMult);
+                _SpeedMovement = Mathf.Lerp(_SpeedMovement, 0, Time.deltaTime * 1);
+            }
+        }
+        
 
         #region isGrounded
 
@@ -157,7 +242,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
 
     bool isFrozen;
-    Vector3 savedVelocity, savedAngularVelocity;
+    Vector3 savedVelocity, savedAngularVelocity, _directionToDash;
 
     [SerializeField] AllCoinsChallenge coinsChallenge;
 
@@ -219,17 +304,19 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
     void PlayerDash()
     {
-        Vector3 _directionToDash = MovementValue;
+        _directionToDash = SocleCameraRotationX.transform.forward;
+        /*
+        _directionToDash = MovementValue;
         _directionToDash[2] = _directionToDash[1];
         _directionToDash[1] = 0;
 
         _directionToDash.Normalize();
-
+        
         if (_directionToDash == Vector3.zero)
         {
             _directionToDash = SocleCameraRotationX.transform.forward;
         }
-
+        */
         rb.AddForce(_directionToDash * DashImpulsionStrength * 1000f);
 
         isDashing = true;

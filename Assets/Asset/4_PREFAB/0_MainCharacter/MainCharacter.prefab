@@ -117,13 +117,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c1552f3cb9ab4d928a3b3d21ed481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _RotationLag: 3
+  _RotationLag: 2
   _CameraSpeedY: 20
-  _CameraSpeedX: 20
-  _SpeedMovement: 2
+  _CameraSpeedX: 25
+  _SpeedMovement: 2.5
   _Mult: 0
-  _DragMult: 0.5
-  LagSpeedVelocity: 3
+  _DragMult: 2
+  LagSpeedVelocity: 5
+  _LagMultCalcule: 1.5
+  _MultCamera: 0
+  _DragMultCamera: 4
+  _LagMovementCamera: 6
+  LagRotationOutRange90D: 1
   SocleCameraRotationX: {fileID: 0}
   SocleCameraRotationY: {fileID: 0}
   coinsChallenge: {fileID: 0}
@@ -131,7 +136,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 119
   groundDetectionStartingPoint: {x: 0, y: -0.65, z: 0}
-  groundDetectionSize: {x: 0.5, y: 0.15, z: 0.5}
+  groundDetectionSize: {x: 1, y: 0.5, z: 1}
   isGrounded: 0
   overlapResults: []
   jumpImpulsionStrength: 30

@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2057727097251846060, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 58489968b313f75409b23f6592c4b5d4, type: 2}
+    - target: {fileID: 2057727097251846099, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2057727097417886128, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -148,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2057727097417886128, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.024396636
       objectReference: {fileID: 0}
     - target: {fileID: 2057727097417886128, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
       propertyPath: m_LocalRotation.x
@@ -156,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2057727097417886128, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.99970245
       objectReference: {fileID: 0}
     - target: {fileID: 2057727097417886128, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
       propertyPath: m_LocalRotation.z
@@ -168,7 +176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2057727097417886128, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 177.204
       objectReference: {fileID: 0}
     - target: {fileID: 2057727097417886128, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -178,6 +186,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SocleRotationMainCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 2057727097417886133, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057727097417886134, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 352a8097b116d8b46991a72d93bb5af3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7607566786618ee42b7126a7a0734a81, type: 3}
 --- !u!1 &1019038298 stripped
@@ -221,8 +237,36 @@ PrefabInstance:
       value: MainCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
+      propertyPath: _DragMult
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
+      propertyPath: _RotationLag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
+      propertyPath: _CameraSpeedX
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
+      propertyPath: _SpeedMovement
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
+      propertyPath: _DragMultCamera
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
+      propertyPath: _LagMultCalcule
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
       propertyPath: LagSpeedVelocity
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
+      propertyPath: _LagMovementCamera
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
       propertyPath: SocleCameraRotationX
@@ -232,6 +276,22 @@ PrefabInstance:
       propertyPath: SocleCameraRotationY
       value: 
       objectReference: {fileID: 1019038298}
+    - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
+      propertyPath: groundDetectionSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
+      propertyPath: groundDetectionSize.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
+      propertyPath: groundDetectionSize.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107754747586273708, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
+      propertyPath: LagRotationOutRange90D
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3107754747586273713, guid: 4bf9d69c1266a584082134c39aaf000a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -423,6 +483,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b5091dc19bdcabb418f3f9b5c893b281, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: af823b2e1d7ac64408a0a9fe4abb96fb, type: 2}
     - target: {fileID: 919132149155446097, guid: b5091dc19bdcabb418f3f9b5c893b281, type: 3}
       propertyPath: m_Name
       value: PH_La_Map_Oui_Monsieur
