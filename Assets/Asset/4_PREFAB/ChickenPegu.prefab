@@ -135,8 +135,8 @@ MonoBehaviour:
   distanceToDetectPlayer: 5
   gravityValue: 0.6
   sr: {fileID: 3378706328685985878}
-  regularMovementSpeed: 2.5
-  runningMovementSpeed: 4
+  regularMovementSpeed: 1.5
+  runningMovementSpeed: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -178,8 +178,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.7, z: 0.2}
-  m_Center: {x: 0, y: 0.35, z: 0}
+  m_Size: {x: 0.5, y: 0.5099791, z: 0.2}
+  m_Center: {x: 0, y: 0.25498956, z: 0}
 --- !u!54 &330523441422670332
 Rigidbody:
   m_ObjectHideFlags: 0

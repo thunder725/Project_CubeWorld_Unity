@@ -306,7 +306,7 @@ public class PeguScript : MonoBehaviour
 
     void StickToPlayer(GameObject _player)
     {
-        Debug.Log("Sticky Time");
+        // Debug.Log("Sticky Time");
 
         // Align to rotation
         // transform.rotation = _player.transform.rotation;

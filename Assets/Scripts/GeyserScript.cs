@@ -19,6 +19,9 @@ public class GeyserScript : MonoBehaviour
 
     [SerializeField] float CullingDistance;
 
+
+    float currentCooldown;
+
     private void Awake()
     {
         capsuleCollider = GetComponent<CapsuleCollider>();
@@ -26,6 +29,7 @@ public class GeyserScript : MonoBehaviour
         GetCapsuleValues();
 
         ParticlesGameObject = transform.GetChild(0).gameObject;
+        currentCooldown = 0;
     }
 
     void GetCapsuleValues()
@@ -51,6 +55,9 @@ public class GeyserScript : MonoBehaviour
             ResetTimer();
             CheckForPlayer();
         }
+
+
+        currentCooldown = Mathf.Max(currentCooldown - Time.deltaTime, 0);
 
         // If active, try to unload it
         if (ParticlesGameObject.activeInHierarchy)
@@ -86,11 +93,15 @@ public class GeyserScript : MonoBehaviour
         var overlapResults = Physics.OverlapCapsule(capsulePoint1, capsulePoint2, capsuleRadius, playerLayer);
 
 
-        if (overlapResults.Length != 0)
+        if (overlapResults.Length != 0 && currentCooldown == 0)
         {
             // Debug.Log("Player Found");
             // reset Velocity & PUSH
-            overlapResults[0].attachedRigidbody.velocity = (Vector3.up * pushStrength);
+            overlapResults[0].attachedRigidbody.velocity = (Vector3.up * pushStrength) + (overlapResults[0].attachedRigidbody.velocity / 4);
+
+            currentCooldown = 1.5f;
+
+            // Debug.Log("Pushy pushy");
         }
         
     }
