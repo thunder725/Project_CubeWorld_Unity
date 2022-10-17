@@ -66,8 +66,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 5561349426305759274, guid: d53a28ce5fd43ea4492a021205ac075d, type: 3}
   - {fileID: 8748892135801146194, guid: 395298cd0a0d8674994bf1905351ba9e, type: 3}
-  - {fileID: 5561349426305759274, guid: 395298cd0a0d8674994bf1905351ba9e, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   jumpImpulsionStrength: 30
   DashImpulsionStrength: 120
   DashDuration: 0
-  CoinPickupParticles: {fileID: 0}
+  CoinPickupParticles: {fileID: 8128644973095988511, guid: e4b6b1b5b9e0a69409e4572324beb97d, type: 3}
 --- !u!64 &3107754747586273714
 MeshCollider:
   m_ObjectHideFlags: 0
