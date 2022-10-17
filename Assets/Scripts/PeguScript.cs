@@ -42,6 +42,10 @@ public class PeguScript : MonoBehaviour
 
     Transform secondaryEventCamera;
     float previousTimer;
+
+    AudioSource _audioSource;
+
+    float timerBeforeWoo;
     
 
 
@@ -49,6 +53,7 @@ public class PeguScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
 
         RandomlyChangeColor();
         StartIdling();
@@ -59,6 +64,8 @@ public class PeguScript : MonoBehaviour
         Invoke("CheckForPlayer", Random.Range(0, 2*TimeBetweenCheckForPlayer));
 
         overlapResults = new Collider[3];
+        ReinitializeTimerBeforeWoo();
+        timerBeforeWoo -= 18f;
     }
 
     private void Update()
@@ -92,6 +99,23 @@ public class PeguScript : MonoBehaviour
             }
             else
             {   // Do AI
+
+                timerBeforeWoo -= Time.deltaTime;
+
+                if (timerBeforeWoo <= 0)
+                {
+                    if (currentState == PeguIAState.RunningAway)
+                    {
+                        _audioSource.pitch = Random.Range(1.5f, 2f);
+                    }
+                    else
+                    {
+                        _audioSource.pitch = Random.Range(0.9f, 1.25f);
+                    }
+                    
+                    _audioSource.Play();
+                    ReinitializeTimerBeforeWoo();
+                }
 
                 // Reduce timer
                 currentStateTimer -= Time.deltaTime;
@@ -137,6 +161,7 @@ public class PeguScript : MonoBehaviour
                 {
 
                     rb.velocity = DirectionToMoveTowards * runningMovementSpeed;
+                    timerBeforeWoo -= Time.deltaTime;
                     // rb.velocity += Vector3.down * gravityValue;
 
                     // rb.velocity = Vector3.zero;
@@ -265,6 +290,9 @@ public class PeguScript : MonoBehaviour
         DirectionToMoveTowards.Normalize();
 
         currentStateTimer = timeToRunFor;
+
+        _audioSource.pitch = Random.Range(1.5f, 2f);
+        _audioSource.Play();
     }
 
     void MaybeStopRunning()
@@ -400,6 +428,11 @@ public class PeguScript : MonoBehaviour
     {
         GeneralEventManager.PauseGameplay -= PausePegu;
         GeneralEventManager.ResumeGameplay -= UnpausePegu;
+    }
+
+    void ReinitializeTimerBeforeWoo()
+    {
+        timerBeforeWoo = Random.Range(25f, 125f);
     }
 
 }
