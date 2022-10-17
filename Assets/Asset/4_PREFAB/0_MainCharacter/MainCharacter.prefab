@@ -123,6 +123,7 @@ MonoBehaviour:
   _SpeedMovement: 2
   _Mult: 0
   _DragMult: 0.5
+  LagSpeedVelocity: 3
   SocleCameraRotationX: {fileID: 0}
   SocleCameraRotationY: {fileID: 0}
   coinsChallenge: {fileID: 0}
