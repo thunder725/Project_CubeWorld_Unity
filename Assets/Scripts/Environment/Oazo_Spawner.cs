@@ -29,7 +29,7 @@ public class Oazo_Spawner : MonoBehaviour
         if (currentTimeBetweenFlocks <= 0)
         {
             currentTimeBetweenFlocks = timerBetweenFlocks;
-            SpawnOazoFlock(Random.Range(5, 16));
+            SpawnOazoFlock(Random.Range(5, 10));
         }
     }
 

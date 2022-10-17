@@ -1,12 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class PeguScript : MonoBehaviour
 {
-    public enum PeguIAState { Idle, Moving, RunningAway, Sticking};
+    public enum PeguIAState { Idle, Moving, RunningAway, Sticking, Paused};
 
     PeguIAState currentState;
-
 
     [SerializeField] float distanceToDetectPlayer;
     [SerializeField] float gravityValue;
@@ -37,6 +37,12 @@ public class PeguScript : MonoBehaviour
     [SerializeField] float stickingTimer;
 
     Rigidbody rb;
+    PeguIAState previousState;
+
+
+    Transform secondaryEventCamera;
+    float previousTimer;
+    
 
 
     private void Start()
@@ -57,6 +63,13 @@ public class PeguScript : MonoBehaviour
 
     private void Update()
     {
+        if (currentState == PeguIAState.Paused)
+        {
+            // Don't rotate if should stick
+            if (previousState != PeguIAState.Sticking) { transform.forward = secondaryEventCamera.forward; }
+            
+            return;
+        }
         if (shouldBeActive) // P�gu should have AI
         {
 
@@ -223,7 +236,7 @@ public class PeguScript : MonoBehaviour
 
     void CheckForPlayer()
     {
-        if (currentState == PeguIAState.Sticking) { return; }
+        if (currentState == PeguIAState.Sticking || currentState == PeguIAState.Paused) { Invoke("CheckForPlayer", TimeBetweenCheckForPlayer); return; }
         if (Physics.OverlapSphereNonAlloc(transform.position, distanceToDetectPlayer, overlapResults, playerLayer, QueryTriggerInteraction.Ignore) != 0)
         {
             // Detected Player!
@@ -337,6 +350,56 @@ public class PeguScript : MonoBehaviour
         animator.enabled = false;
 
         currentStateTimer = stickingTimer;
+    }
+
+    void PausePegu()
+    {
+        animator.Play("Pegu_NoAnimation");
+        previousState = currentState;
+        currentState = PeguIAState.Paused;
+
+        secondaryEventCamera = FindObjectOfType<AllCoinsChallenge>().transform.GetChild(0).GetChild(0);
+        previousTimer = currentStateTimer;
+        currentStateTimer = 10000;
+    }
+
+    void UnpausePegu()
+    {
+        currentState = previousState;
+        currentStateTimer = previousTimer;
+
+        switch (currentState)
+        {
+            case PeguIAState.Idle:
+                animator.Play("Pegu_IdleAnim");
+                break;
+
+            case PeguIAState.Moving:
+                animator.Play("Pegu_MovementAnim");
+                break;
+
+            case PeguIAState.RunningAway:
+                animator.Play("Pegu_MovementAnim");
+                break;
+
+            case PeguIAState.Sticking:
+                animator.Play("Pegu_NoAnimation");
+                break;
+        }
+
+    }
+
+    private void OnEnable()
+    {
+        GeneralEventManager.PauseGameplay += PausePegu;
+        GeneralEventManager.ResumeGameplay += UnpausePegu;
+        
+    }
+
+    private void OnDisable()
+    {
+        GeneralEventManager.PauseGameplay -= PausePegu;
+        GeneralEventManager.ResumeGameplay -= UnpausePegu;
     }
 
 }
