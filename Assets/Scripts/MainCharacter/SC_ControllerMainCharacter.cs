@@ -9,7 +9,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
     InputController _Controller;
     Rigidbody rb;
     
-    public float _RotationLag, _CameraSpeedY, _CameraSpeedX, _SpeedMovement, _Mult, _DragMult;
+    public float _RotationLag, _CameraSpeedY, _CameraSpeedX, _SpeedMovement, _Mult, _DragMult, LagSpeedVelocity;
     float InitialSpeed;
     CharacterAbilities SCabilities;
     public GameObject SocleCameraRotationX, SocleCameraRotationY;
@@ -91,8 +91,8 @@ public class SC_ControllerMainCharacter : MonoBehaviour
             _Velocity.x = _SpeedMovement * MovementValue.x;
             _Velocity.y = rb.velocity.y;
 
-
-            rb.velocity = _Velocity.x * SocleCameraRotationX.transform.right + _Velocity.z * SocleCameraRotationX.transform.forward + _Velocity.y * Vector3.up;
+            Vector3 _VelocityTarget = _Velocity.x * SocleCameraRotationX.transform.right + _Velocity.z * SocleCameraRotationX.transform.forward + _Velocity.y * Vector3.up;
+            rb.velocity = Vector3.Lerp(rb.velocity, _VelocityTarget, Time.deltaTime * LagSpeedVelocity);
             // print(rb.velocity);
 
             if (_Mult <= 3)
@@ -102,7 +102,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
             if (InitialSpeed * 3 <= _SpeedMovement)
             {
-                _SpeedMovement = InitialSpeed * 2;
+                _SpeedMovement = InitialSpeed * 3;
             }
             else
             {
