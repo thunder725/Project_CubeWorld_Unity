@@ -1,23 +1,14 @@
 ============ SCRIPTING ============
 
-
-		
 	Grabbing Stars
 
 	Start Game (Scene Management)
 
 	Show pause menu (Start Input)
 
-	Option Menu ? 
-
-
-	Use the UnityEvent to pause gameplay when showing the Animation
-
-	use the isDashing bool to remove speedcap for the Dash Duration
 
 ============ VISUAL ============
 
-	Birds?
 
 	Star particle System
 	Star Material
@@ -34,15 +25,10 @@
 
 ============ AUDIO ============
 
-	Coin Pickup
 	Jump
 	Land
 	Star Pickup
-	Geyser
-	Dash
 	Dash-Collide into objects
-	Destroy Tree
-	Pegu flees
 	Pegu squished
 	Menu Button mouseover (?)
 	Menu Button Click
