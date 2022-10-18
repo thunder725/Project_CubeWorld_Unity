@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public enum ValidSounds {  }
+    public enum ValidSounds { CoinPickup }
     [SerializeField] AudioClipsDictionary_ScriptableObject AudioClipsDictionary;
     [SerializeField] AudioSource audioSource1, audioSource2, audioSource3;
     AudioSource _currentSource;

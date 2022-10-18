@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082426141427af446800cc84013037e7, type: 3}
   m_Name: SoundManagerSounds
   m_EditorClassIdentifier: 
-  AudioClips: []
+  AudioClips:
+  - name: CoinPickup
+    audioClip: {fileID: 8300000, guid: 0139a51b880fa384da140d5793b64f94, type: 3}
+    volume: 0.35
+    pitch: 1.8

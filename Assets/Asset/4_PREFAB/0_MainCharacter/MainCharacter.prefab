@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3107754747586273714}
   - component: {fileID: 8616891576621763380}
   - component: {fileID: 3524052902269205629}
+  - component: {fileID: 37401102767019987}
   m_Layer: 7
   m_Name: MainCharacter
   m_TagString: Player
@@ -183,3 +184,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShouldDebugFaceColor: 1
+--- !u!114 &37401102767019987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107754747586273707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9cee585bd627e443903ff0b8c352e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioClipsDictionary: {fileID: 11400000, guid: e2b84fd9f626c1a45aa08f8e64d06706, type: 2}
+  audioSource1: {fileID: 0}
+  audioSource2: {fileID: 0}
+  audioSource3: {fileID: 0}

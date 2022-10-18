@@ -17,6 +17,8 @@ public class SC_ControllerMainCharacter : MonoBehaviour
     Vector2 MovementValue;
     Quaternion _RotationCameraControllerResult, _RotationCameraControllerResultY;
 
+    SoundManager soundManager;
+
     //===========================================================
 
     private void Awake()
@@ -27,6 +29,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
         
         overlapResults = new Collider[32];
+        soundManager = GetComponent<SoundManager>();   
         
 
     }
@@ -338,6 +341,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
             case "Collectable":
                 // Picking up a Coin
                 PickingUpCoin(other.gameObject);
+                soundManager.PlaySoundWithName(SoundManager.ValidSounds.CoinPickup);
                 break;
 
             case "Big_Collectable":
