@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerAudioDictionnary
   m_EditorClassIdentifier: 
   AudioClips:
-  - name: 
+  - name: CoinPickup
     audioClip: {fileID: 0}
-    volume: 0
+    volume: 0.2
     pitch: 0
   - name: 
     audioClip: {fileID: 0}

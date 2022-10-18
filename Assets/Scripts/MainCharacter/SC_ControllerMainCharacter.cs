@@ -17,6 +17,8 @@ public class SC_ControllerMainCharacter : MonoBehaviour
     Vector2 MovementValue;
     Quaternion _RotationCameraControllerResult, _RotationCameraControllerResultY;
 
+    SoundManager soundManager;
+
     //===========================================================
 
     private void Awake()
@@ -27,6 +29,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
         
         overlapResults = new Collider[32];
+        soundManager = GetComponent<SoundManager>();   
         
 
     }
@@ -269,6 +272,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
     [Header("Particle Systems")]
     [SerializeField] GameObject CoinPickupParticles;
+    [SerializeField] GameObject bigStarPickupParticles;
 
 
     void LandingOnGround()
@@ -322,11 +326,14 @@ public class SC_ControllerMainCharacter : MonoBehaviour
         isDashing = true;
         currentDashDuration = DashDuration;
 
+        soundManager.PlaySoundWithName(SoundManager.ValidSounds.Dash);
+
     }
 
     void PlayerJump()
     {
         rb.AddForce(Vector3.up * jumpImpulsionStrength * 1000f);
+
     }
 
 
@@ -338,6 +345,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
             case "Collectable":
                 // Picking up a Coin
                 PickingUpCoin(other.gameObject);
+                soundManager.PlaySoundWithName(SoundManager.ValidSounds.CoinPickup);
                 break;
 
             case "Big_Collectable":
@@ -347,6 +355,22 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
             default:
                 Debug.LogWarning("Entering in contact with an unknown Trigger: The object has undefined tag " + other.gameObject.tag);
+                break;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Tree":
+
+                //Debug.Log(rb.velocity.sqrMagnitude);
+                if (rb.velocity.sqrMagnitude > 4f)
+                {
+                        soundManager.PlaySoundWithName(SoundManager.ValidSounds.HitTree);
+                }
+                
                 break;
         }
     }
@@ -362,6 +386,9 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
     void PickingUpStar(GameObject _starGO)
     {
+
+        Instantiate(bigStarPickupParticles, _starGO.transform.position, Quaternion.Euler(-90, 0, 0));
+
         Destroy(_starGO);
     }
 

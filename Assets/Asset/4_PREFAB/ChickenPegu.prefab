@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 538987077521743095}
   - component: {fileID: 330523441422670332}
   - component: {fileID: 6737224304283632353}
+  - component: {fileID: 8698635944349246562}
   m_Layer: 8
   m_Name: ChickenPegu
   m_TagString: "P\xE9gu"
@@ -293,3 +294,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8698635944349246562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3554444899451826440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb034369385665f40b809f29cb96f54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBillboardActive: 1

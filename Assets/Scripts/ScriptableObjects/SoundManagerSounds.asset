@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082426141427af446800cc84013037e7, type: 3}
   m_Name: SoundManagerSounds
   m_EditorClassIdentifier: 
-  AudioClips: []
+  AudioClips:
+  - name: CoinPickup
+    audioClip: {fileID: 8300000, guid: 0139a51b880fa384da140d5793b64f94, type: 3}
+    volume: 0.35
+    pitch: 1.8
+  - name: Dash
+    audioClip: {fileID: 8300000, guid: e70ed061eb2faaf478c7924546a5acff, type: 3}
+    volume: 0.3
+    pitch: 0.9
+  - name: HitTree
+    audioClip: {fileID: 8300000, guid: 18925dbb1b9568e4c9604689b9b92ddf, type: 3}
+    volume: 0.2
+    pitch: 0.9

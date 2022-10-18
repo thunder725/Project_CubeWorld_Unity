@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class PeguScript : MonoBehaviour
 {
@@ -43,6 +41,7 @@ public class PeguScript : MonoBehaviour
     Transform secondaryEventCamera;
     float previousTimer;
 
+    BillboardScript billboardScript;
     AudioSource _audioSource;
 
     float timerBeforeWoo;
@@ -54,6 +53,9 @@ public class PeguScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        billboardScript = GetComponent<BillboardScript>();
+        billboardScript.isBillboardActive = true;
+        billboardScript.billboardAxis = BillboardScript.PotentialAxes.BlueAxis;
 
         RandomlyChangeColor();
         StartIdling();
@@ -79,12 +81,6 @@ public class PeguScript : MonoBehaviour
         }
         if (shouldBeActive) // P�gu should have AI
         {
-
-            // Do a Billboard effect if not sticking to the cube
-            if (currentState != PeguIAState.Sticking)
-            {
-                transform.forward = Camera.main.transform.forward;
-            }
             
 
             // P�gu is too far away
@@ -347,6 +343,8 @@ public class PeguScript : MonoBehaviour
 
     void StickToPlayer(GameObject _player)
     {
+
+        billboardScript.isBillboardActive = false;
         // Debug.Log("Sticky Time");
 
         // Align to rotation
@@ -385,6 +383,7 @@ public class PeguScript : MonoBehaviour
         animator.Play("Pegu_NoAnimation");
         previousState = currentState;
         currentState = PeguIAState.Paused;
+        billboardScript.isBillboardActive = false;
 
         secondaryEventCamera = FindObjectOfType<AllCoinsChallenge>().transform.GetChild(0).GetChild(0);
         previousTimer = currentStateTimer;
@@ -400,13 +399,16 @@ public class PeguScript : MonoBehaviour
         {
             case PeguIAState.Idle:
                 animator.Play("Pegu_IdleAnim");
+                billboardScript.isBillboardActive = true;
                 break;
 
             case PeguIAState.Moving:
+                billboardScript.isBillboardActive = true;
                 animator.Play("Pegu_MovementAnim");
                 break;
 
             case PeguIAState.RunningAway:
+                billboardScript.isBillboardActive = true;
                 animator.Play("Pegu_MovementAnim");
                 break;
 
