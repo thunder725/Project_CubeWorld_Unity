@@ -61,8 +61,8 @@ public class PeguScript : MonoBehaviour
         StartIdling();
 
         // Do the first check in a random time between 0 & 2 Timer
-        // So that every P�gu has a random check time
-        // And not do the calls of the 80000 P�gu at the same frame
+        // So that every Pegu has a random check time
+        // And not do the calls of the 80000 Pegu at the same frame
         Invoke("CheckForPlayer", Random.Range(0, 2*TimeBetweenCheckForPlayer));
 
         overlapResults = new Collider[3];
@@ -79,11 +79,11 @@ public class PeguScript : MonoBehaviour
             
             return;
         }
-        if (shouldBeActive) // P�gu should have AI
+        if (shouldBeActive) // Pegu should have AI
         {
             
 
-            // P�gu is too far away
+            // Pegu is too far away
             if ((Camera.main.transform.position - transform.position).sqrMagnitude > MathPlus.FastSquare(CullingDistance))
             {
                 // Disable AI
@@ -169,9 +169,9 @@ public class PeguScript : MonoBehaviour
 
             }
         }
-        else // P�gu shouldn't have AI
+        else // Pegu shouldn't have AI
         {
-            // P�gu is close enough
+            // Pegu is close enough
             if ((Camera.main.transform.position - transform.position).sqrMagnitude < MathPlus.FastSquare(CullingDistance))
             {
                 // Enable AI
@@ -198,7 +198,7 @@ public class PeguScript : MonoBehaviour
         // Rotate the direction with the Quaternion to "transfer" it into the coordinate system of the Transform
         var rotatedDirection = rotationToWorld * DirectionToMoveTowards;
 
-        // Just analyse the x component: > 0 => moves to the P�gu's Right, and the other way around
+        // Just analyse the x component: > 0 => moves to the Pegu's Right, and the other way around
 
         if (rotatedDirection.x >= 0)
         {
@@ -215,7 +215,7 @@ public class PeguScript : MonoBehaviour
 
 
     /*
-         IA of the P�gu:
+         IA of the Pegu:
             
             Roll a timer for a time before moving (medium-long)
             When it's done, they roll a random direction to move to and a time to move for

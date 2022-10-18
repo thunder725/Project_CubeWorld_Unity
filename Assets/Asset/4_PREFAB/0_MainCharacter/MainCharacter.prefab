@@ -120,9 +120,9 @@ MonoBehaviour:
   _RotationLag: 2
   _CameraSpeedY: 20
   _CameraSpeedX: 25
-  _SpeedMovement: 2.5
+  _SpeedMovement: 2.7
   _Mult: 0
-  _DragMult: 2
+  _DragMult: 2.1
   LagSpeedVelocity: 5
   _LagMultCalcule: 1.5
   _MultCamera: 0

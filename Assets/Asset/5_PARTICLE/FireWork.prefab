@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &614609974911234121
 Transform:
   m_ObjectHideFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6347113377960052326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.96, y: -2.42, z: 3.5}
+  m_LocalPosition: {x: 0, y: -2.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4946,7 +4946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8860322415401111151
 Transform:
   m_ObjectHideFlags: 0
@@ -4955,7 +4955,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6516584361273878966}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.59, y: 2.38, z: 7}
+  m_LocalPosition: {x: 0.53, y: 2.52, z: 0.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9885,7 +9885,7 @@ Transform:
   m_GameObject: {fileID: 8128644973095988511}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 16.851, y: 25.79, z: 57.369083}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 614609974911234121}
@@ -10029,8 +10029,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 18
-      minScalar: 11
+      scalar: 15
+      minScalar: 7
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10469,7 +10469,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 3.2
-      minScalar: 2.4
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10521,14 +10521,14 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
-    angle: 20
+    type: 0
+    angle: 39.5
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 0
+    radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 90, y: 0, z: -36}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -10608,7 +10608,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.1
+      value: 3.32
       mode: 0
       spread: 0
       speed:
@@ -10665,7 +10665,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 360
+      value: 249.13
       mode: 0
       spread: 0
       speed:
@@ -10837,7 +10837,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 60
+        scalar: 100
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -10895,7 +10895,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 10
+        scalar: 50
         minScalar: 30
         maxCurve:
           serializedVersion: 2
