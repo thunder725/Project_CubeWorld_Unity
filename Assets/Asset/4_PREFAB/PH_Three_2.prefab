@@ -96,7 +96,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 5db87354c6fba464b86b50b95343812e, type: 3}
+  - {fileID: 2100000, guid: 3b0e69294acdb5f4c9f05b73b6aeb8b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,7 +147,6 @@ MonoBehaviour:
   treeStumpPrefab: {fileID: 7087084870165476794, guid: 9115f210b3636134eafdf87daf82fa39, type: 3}
   stumpSpawnPoint: {fileID: 5297217166220149346}
   destructionParticles: {fileID: 7184626830938730579, guid: 5c8836e06317c0545a4585376c8412a7, type: 3}
-  speedDestructionThreshold: 3.5
 --- !u!1 &8184006811953374122
 GameObject:
   m_ObjectHideFlags: 0
