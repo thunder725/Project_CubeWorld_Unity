@@ -325,11 +325,14 @@ public class SC_ControllerMainCharacter : MonoBehaviour
         isDashing = true;
         currentDashDuration = DashDuration;
 
+        soundManager.PlaySoundWithName(SoundManager.ValidSounds.Dash);
+
     }
 
     void PlayerJump()
     {
         rb.AddForce(Vector3.up * jumpImpulsionStrength * 1000f);
+
     }
 
 
@@ -351,6 +354,22 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
             default:
                 Debug.LogWarning("Entering in contact with an unknown Trigger: The object has undefined tag " + other.gameObject.tag);
+                break;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Tree":
+
+                //Debug.Log(rb.velocity.sqrMagnitude);
+                if (rb.velocity.sqrMagnitude > 4f)
+                {
+                        soundManager.PlaySoundWithName(SoundManager.ValidSounds.HitTree);
+                }
+                
                 break;
         }
     }
