@@ -147,7 +147,7 @@ MonoBehaviour:
   DirectionToMoveTowards: {x: 0, y: 0, z: 0}
   TimeBetweenCheckForPlayer: 0.5
   timeToRunFor: 3.5
-  CullingDistance: 75
+  CullingDistance: 45
   stickingTimer: 15
 --- !u!95 &307788230
 Animator:
@@ -306,4 +306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb034369385665f40b809f29cb96f54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  billboardAxis: 0
+  invertAxis: 0
   isBillboardActive: 1

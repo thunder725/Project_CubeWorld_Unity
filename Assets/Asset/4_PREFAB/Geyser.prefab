@@ -119,7 +119,7 @@ MonoBehaviour:
   pushStrength: 15
   OverlapFrequencies: 15
   capsuleRadius: 0
-  CullingDistance: 50
+  CullingDistance: 35
 --- !u!82 &3330412324546102157
 AudioSource:
   m_ObjectHideFlags: 0

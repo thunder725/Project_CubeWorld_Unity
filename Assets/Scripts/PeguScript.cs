@@ -182,6 +182,11 @@ public class PeguScript : MonoBehaviour
             }
         }
         
+        if (transform.position.y < -10)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
 

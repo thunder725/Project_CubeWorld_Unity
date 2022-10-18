@@ -87,6 +87,8 @@ public class Oazo_Spawner : MonoBehaviour
         Vector3 nextSpawnPos = leadingOazoPosition;
         Vector3 offset = Vector3.zero;
 
+        // Determine the position of the next Oazo
+
         for (int i = 0; i < numberOfOazo; i++)
         {
             offset = (Vector3.back + Vector3.right + Vector3.back).normalized;
@@ -98,6 +100,8 @@ public class Oazo_Spawner : MonoBehaviour
 
             nextSpawnPos = leadingOazoPosition + offset;
 
+
+            // Spawn it
             SpawnOneOazo(nextSpawnPos, (1 + Mathf.FloorToInt(i/2)));
         }
 
