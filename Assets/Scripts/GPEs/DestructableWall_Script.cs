@@ -6,7 +6,7 @@ public class DestructableWall_Script : MonoBehaviour
 {
     [SerializeField] GameObject destructionParticles;
 
-    public const float speedDestructionThreshold = 6f;
+    public const float speedDestructionThreshold = 4f;
 
 
     private void OnCollisionEnter(Collision collision)
