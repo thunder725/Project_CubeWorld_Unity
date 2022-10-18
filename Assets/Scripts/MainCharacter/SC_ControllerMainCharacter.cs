@@ -272,6 +272,7 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
     [Header("Particle Systems")]
     [SerializeField] GameObject CoinPickupParticles;
+    [SerializeField] GameObject bigStarPickupParticles;
 
 
     void LandingOnGround()
@@ -385,6 +386,9 @@ public class SC_ControllerMainCharacter : MonoBehaviour
 
     void PickingUpStar(GameObject _starGO)
     {
+
+        Instantiate(bigStarPickupParticles, _starGO.transform.position, Quaternion.Euler(-90, 0, 0));
+
         Destroy(_starGO);
     }
 

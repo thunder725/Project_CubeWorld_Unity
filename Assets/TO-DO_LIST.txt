@@ -1,8 +1,6 @@
 ============ SCRIPTING ============
 
-	Action can Dash
 
-	Dash can destroy some items
 		
 	Grabbing Stars
 

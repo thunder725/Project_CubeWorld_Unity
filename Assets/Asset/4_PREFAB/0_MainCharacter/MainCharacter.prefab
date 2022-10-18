@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 3107754747586273709}
   - component: {fileID: 3107754747586273708}
   - component: {fileID: 3107754747586273714}
-  - component: {fileID: 8616891576621763380}
   - component: {fileID: 3524052902269205629}
   - component: {fileID: 37401102767019987}
   m_Layer: 7
@@ -144,6 +143,7 @@ MonoBehaviour:
   DashImpulsionStrength: 80
   DashDuration: 0
   CoinPickupParticles: {fileID: 8128644973095988511, guid: e4b6b1b5b9e0a69409e4572324beb97d, type: 3}
+  bigStarPickupParticles: {fileID: 8128644973095988511, guid: beeee56a971c3d443974d4a409f27efa, type: 3}
 --- !u!64 &3107754747586273714
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -158,19 +158,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3758573805739257388, guid: d53a28ce5fd43ea4492a021205ac075d, type: 3}
---- !u!114 &8616891576621763380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3107754747586273707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dcc56f3229862344a735172529cc82b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShouldDebugFaceColor: 0
 --- !u!114 &3524052902269205629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcc56f3229862344a735172529cc82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShouldDebugFaceColor: 1
+  ShouldDebugFaceColor: 0
 --- !u!114 &37401102767019987
 MonoBehaviour:
   m_ObjectHideFlags: 0
