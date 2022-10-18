@@ -57,6 +57,7 @@ public class PeguScript : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         billboardScript = GetComponent<BillboardScript>();
         billboardScript.isBillboardActive = true;
+        billboardScript.billboardAxis = BillboardScript.PotentialAxes.BlueAxis;
 
         RandomlyChangeColor();
         StartIdling();
