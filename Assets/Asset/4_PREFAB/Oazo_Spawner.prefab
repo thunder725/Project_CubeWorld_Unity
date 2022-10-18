@@ -48,3 +48,4 @@ MonoBehaviour:
   flockHeightRange: {x: 25, y: 35}
   distanceBetweenTwoOazo: 1.5
   timerBetweenFlocks: 240
+  flockNumber: {x: 5, y: 7}
