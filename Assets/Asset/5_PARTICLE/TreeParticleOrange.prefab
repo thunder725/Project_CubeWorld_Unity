@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3861572301594567685}
   - component: {fileID: 1036647070928670240}
   m_Layer: 0
-  m_Name: TreeParticle
+  m_Name: TreeParticleOrange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +222,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.25952297, g: 0.6792453, b: 0.2783869, a: 1}
+      minColor: {r: 0.8301887, g: 0.41961843, b: 0.16838734, a: 1}
       maxColor: {r: 0.5283019, g: 0.36353233, b: 0.19188322, a: 1}
       maxGradient:
         serializedVersion: 2
