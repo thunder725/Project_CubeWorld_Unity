@@ -11,6 +11,7 @@ public class Oazo_Spawner : MonoBehaviour
     [SerializeField] float distanceBetweenTwoOazo;
 
     [SerializeField] float timerBetweenFlocks;
+    [SerializeField] Vector2 flockNumber;
     float currentTimeBetweenFlocks;
 
 
@@ -29,7 +30,7 @@ public class Oazo_Spawner : MonoBehaviour
         if (currentTimeBetweenFlocks <= 0)
         {
             currentTimeBetweenFlocks = timerBetweenFlocks;
-            SpawnOazoFlock(Random.Range(5, 10));
+            SpawnOazoFlock((int)Random.Range(flockNumber.x, flockNumber.y));
         }
     }
 
